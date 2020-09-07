@@ -34,11 +34,11 @@ router.post("/products", async (req, res) => {
 
 router.put("/product/:id", async (req, res) => {
 	const { id } = req.params;
-	const { productVarieties, dateEdited } = req.body;
+	// const { productVarieties, dateEdited } = req.body;
 	try {
 		const product = await db.Product.findOne({ where: { id: id } });
 		if (product) {
-			const updatedProduct = await product.update(productVarieties, dateEdited);
+			const updatedProduct = await product.update(req.body);
 			return res.json(updatedProduct);
 		}
 
